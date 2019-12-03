@@ -29,6 +29,18 @@
         ></v-slider>
       </v-row>
       <v-row>
+        <v-slider
+          v-model="umidade"
+          label="Umidade"
+          min="0"
+          max="1024"
+          thumb-label
+          :thumb-size="30"
+          step="1"
+          v-on:end="sendData"
+        ></v-slider>
+      </v-row>
+      <v-row>
         <v-btn v-if="tanque" v-on:click="sendReabastecer">Reabastecer tanque d'água</v-btn>
       </v-row>
     </v-container>
@@ -49,6 +61,7 @@ export default {
     return {
       temperatura: 20,
       persiana: 25,
+      umidade: 256,
     };
   },
   sockets:{
@@ -73,7 +86,8 @@ export default {
       return {
         name: this.name,
         temperatura: this.temperatura,
-        persiana: this.persiana
+        persiana: this.persiana,
+        umidade: this.umidade,
       }
     }
   }
